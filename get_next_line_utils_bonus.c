@@ -6,17 +6,17 @@
 /*   By: chutterm <chutterm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 14:19:18 by chutterm          #+#    #+#             */
-/*   Updated: 2025/12/19 21:40:01 by chutterm         ###   ########.fr       */
+/*   Updated: 2026/01/07 21:01:06 by chutterm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-t_list	*ft_lstnew(char *content)
+t_gnl	*gnl_lstnew(char *content)
 {
-	t_list	*elem;
+	t_gnl	*elem;
 
-	elem = malloc(sizeof(t_list));
+	elem = malloc(sizeof(t_gnl));
 	if (!elem)
 		return (NULL);
 	elem->content = content;
@@ -25,7 +25,7 @@ t_list	*ft_lstnew(char *content)
 	return (elem);
 }
 
-t_list	*ft_lstlast(t_list *lst)
+t_gnl	*gnl_lstlast(t_gnl *lst)
 {
 	while (lst)
 	{
@@ -36,23 +36,24 @@ t_list	*ft_lstlast(t_list *lst)
 	return (NULL);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	gnl_lstadd_back(t_gnl **lst, t_gnl *new)
 {
-	t_list	*temp;
+	t_gnl	*temp;
 
 	if (*lst)
 	{
-		temp = ft_lstlast(*lst);
+		temp = gnl_lstlast(*lst);
 		temp->next = new;
 	}
 	else
 		*lst = new;
 }
 
-void	ft_lstclear(t_list **lst)
+void	gnl_lstclear(t_gnl **lst, void (*del_func)(void*))
 {
-	t_list	*temp_lst;
+	t_gnl	*temp_lst;
 
+	(void) del_func;
 	if (!lst)
 		return ;
 	while (*lst != NULL)
@@ -65,7 +66,7 @@ void	ft_lstclear(t_list **lst)
 	*lst = NULL;
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*gnl_calloc(size_t nmemb, size_t size)
 {
 	void			*arr;
 	size_t			alloc_size;

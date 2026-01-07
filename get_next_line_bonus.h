@@ -6,7 +6,7 @@
 /*   By: chutterm <chutterm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 14:19:10 by chutterm          #+#    #+#             */
-/*   Updated: 2025/12/19 21:40:23 by chutterm         ###   ########.fr       */
+/*   Updated: 2026/01/07 21:35:52 by chutterm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@
 #  define BUFFER_SIZE 1024
 # endif
 
-typedef struct s_list
+typedef struct s_gnl
 {
 	char			*content;
 	int				len;
-	struct s_list	*next;
-}					t_list;
+	struct s_gnl	*next;
+}					t_gnl;
 
 char	*get_next_line(int fd);
-t_list	*ft_lstnew(char *content);
-t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstclear(t_list **lst);
-void	*ft_calloc(size_t nmemb, size_t size);
+t_gnl	*gnl_lstnew(char *content);
+t_gnl	*gnl_lstlast(t_gnl *lst);
+void	gnl_lstadd_back(t_gnl **lst, t_gnl *new);
+void	gnl_lstclear(t_gnl **lst, void (*del_func)(void*));
+void	*gnl_calloc(size_t nmemb, size_t size);
 
 #endif
